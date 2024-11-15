@@ -982,7 +982,8 @@ def ini_to_dict(fname, section):
     patterns['critical_files'] = config.get(section, 'critical_files')
     patterns['wanted_files'] = config.get(section, 'wanted_files')
     patterns['all_files'] = config.get(section, 'all_files')
-    patterns['is_critical_set'] = False
+    patterns['is_critical_set'] = config.getboolean(section, 'is_critical_set', fallback=False)
+    print(f"kex is_critical_set = {patterns['is_critical_set']}")
     try:
         patterns['variable_tags'] = config.get(section,
                                                'variable_tags').split(',')

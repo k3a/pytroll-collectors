@@ -274,9 +274,10 @@ patterns
         converting numeric segments or segment ranges to strings.
 
     critical_files
-        Describes the files that must be unconditionally present.  If timeout is reached
-        and one or more critical files are missing, no message is published and all
-        further processing ceases. The critical files are describes as a comma-separated string.
+        Describes the files that must present.  If timeout is reached while one or more
+        critical files are missing and the set has ``is_critical_set`` enabled,
+        no message is published and all further processing for the time slot ceases.
+        The critical files are described as a comma-separated string.
         Each item must contain exactly one colon (``:``).  The part before the
         colon is a string describing the channel. The channel string may be
         empty, such as in cases where the filename does not contain a channel
@@ -307,6 +308,8 @@ patterns
     is_critical_set
         A boolean that marks this set of files as critical for the whole collection. Used for
         example when cloud mask data are required to successfully create a masked image.
+        Can also be used in INI configuration to enforce ``critical_files`` so that
+        no message will be published if one or more critical files are missing.
 
     variable_tags
         List of strings for tags that are expected to vary between segments.
